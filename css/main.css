@@ -62,6 +62,7 @@ html {
   width: 100%;
   font-size: 22px;
   text-align: right;
+  direction: rtl;
 }
 .popup .content .btns {
   margin-top: 15px;
