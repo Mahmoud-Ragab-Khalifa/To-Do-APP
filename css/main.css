@@ -78,6 +78,21 @@ html {
   font-size: 18px;
   user-select: none;
 }
+@media (max-width: 767px) {
+  .popup {
+    align-items: flex-start;
+  }
+  .popup .content {
+    position: relative;
+    text-align: center;
+    top: 200px;
+    width: 100%;
+  }
+  .popup .content .btns {
+    width: 100%;
+    justify-content: center;
+  }
+}
 .popup .content .btns span.add {
   background-color: #2196f3;
   color: #000;
