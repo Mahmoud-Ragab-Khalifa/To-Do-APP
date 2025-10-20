@@ -124,15 +124,15 @@ function createTask(task) {
   fullDate.classList.add("date");
   let day = document.createElement("span");
   day.classList.add("day");
-  day.appendChild(document.createTextNode(`${task.date.slice(0, 4)}/`));
+  day.appendChild(document.createTextNode(`${Number(task.date.slice(8, 10)) + 1}-`));
   fullDate.appendChild(day);
   let month = document.createElement("span");
   month.classList.add("month");
-  month.appendChild(document.createTextNode(`${task.date.slice(5, 7)}/`));
+  month.appendChild(document.createTextNode(`${task.date.slice(5, 7)}-`));
   fullDate.appendChild(month);
   let year = document.createElement("span");
   year.classList.add("year");
-  year.appendChild(document.createTextNode(`${task.date.slice(8, 10)}`));
+  year.appendChild(document.createTextNode(`${task.date.slice(0, 4)}`));
   fullDate.appendChild(year);
   taskDateContainer.appendChild(fullDate);
   let calenderIcon = document.createElement("i");
