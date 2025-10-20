@@ -1,0 +1,222 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  background-color: #0f111e;
+}
+html {
+  scroll-behavior: smooth;
+}
+.container {
+  padding: 0 15px;
+  margin: 0 auto;
+}
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .container {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .container {
+    width: 1170px;
+  }
+}
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.popup .content {
+  background-color: #111;
+  color: #fff;
+  width: 500px;
+  z-index: 10;
+  padding: 20px;
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  gap: 15px;
+}
+.popup .content .input {
+  padding: 15px;
+  caret-color: #2196f3;
+  outline: none;
+  border: 2px solid #2196f3;
+  border-radius: 4px;
+  display: block;
+  width: 100%;
+  font-size: 22px;
+  text-align: right;
+}
+.popup .content .btns {
+  margin-top: 15px;
+  display: flex;
+  gap: 10px;
+}
+.popup .content .btns span {
+  padding: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100px;
+  cursor: pointer;
+  font-size: 18px;
+  user-select: none;
+}
+.popup .content .btns span.add {
+  background-color: #2196f3;
+  color: #000;
+}
+.popup .content .btns span.cancel {
+  color: #2196f3;
+  border: 1px solid #2196f3;
+  transition: 0.3s;
+}
+.popup .content .btns span.cancel:hover {
+  background-color: #2196f3;
+  color: #000;
+}
+.container .header {
+  background-color: rgb(70, 7, 128);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 15px;
+}
+.container .header h1 {
+  width: 100%;
+  text-align: center;
+}
+.container .header .add {
+  background-color: #fff;
+  color: #555;
+  width: 25px;
+  height: 25px;
+  margin-left: auto;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.container .body {
+  background-color: #eee;
+  padding: 15px;
+}
+.container .body .temp {
+  display: block;
+  text-align: center;
+  font-weight: 500;
+  font-size: 26px;
+}
+.container .body .temp.hide {
+  display: none;
+}
+.container .body .box {
+  background-color: #fff;
+  box-shadow: 0 0 10px #ccc;
+  border-bottom: 1px solid #333;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  &.done {
+    background-color: rgb(76 175 80 / 50%);
+    box-shadow: 0 0 3px #00000072;
+  }
+}
+@media (max-width: 767px) {
+  .container .body .box {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
+.container .body .box .control {
+  padding-left: 50px;
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+@media (max-width: 767px) {
+  .container .body .box .control {
+    padding: 0px;
+    gap: 10px;
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+.container .body .box .control i {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: #fff;
+  font-size: 13px;
+  cursor: pointer;
+  &.edit {
+    background-color: #2196f3;
+  }
+  &.check {
+    background-color: #4caf50;
+    &.checked::before {
+      content: "\f00d";
+      position: absolute;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: #76078a;
+      z-index: 3;
+    }
+  }
+  &.delete {
+    background-color: #890a54;
+  }
+}
+.container .body .box .content .task-head {
+  text-align: right;
+  margin-bottom: 10px;
+}
+.container .body .box .content .task-date {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+  color: #444;
+  justify-content: flex-end;
+}
+.container .body .box .content .task-date .date {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 767px) {
+  .container .body .box .content {
+    width: 100%;
+  }
+  .container .body .box .content .task-head {
+    text-align: auto;
+    word-wrap: break-word;
+    line-height: 1.5;
+  }
+}
