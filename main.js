@@ -124,7 +124,7 @@ function createTask(task) {
   fullDate.classList.add("date");
   let day = document.createElement("span");
   day.classList.add("day");
-  day.appendChild(document.createTextNode(`${Number(task.date.slice(8, 10)) + 1}-`));
+  day.appendChild(document.createTextNode(`${Number(task.date.slice(8, 10))}-`));
   fullDate.appendChild(day);
   let month = document.createElement("span");
   month.classList.add("month");
@@ -199,10 +199,56 @@ document.addEventListener("click", function (e) {
 // Delete Task By Clicking On Trash Button
 document.addEventListener("click", function (e) {
   if (e.target.classList.contains("delete")) {
-    e.target.parentElement.parentElement.remove();
-    // Delete From Local Storage
+    // Get All Tasks Boxes
+    let boxes = document.querySelectorAll(".box");
     let lsArray = JSON.parse(window.localStorage.getItem("tasks"));
-    let resultArray = lsArray.filter((box) => box.id != e.target.parentElement.parentElement.dataset.id);
-    window.localStorage.setItem("tasks", JSON.stringify(resultArray));
+    boxes.forEach((box, index) => {
+      if (box.dataset.id == e.target.parentElement.parentElement.dataset.id) {
+        confirmDeletePopUp(lsArray[index].title);
+        handleDelete(e.target.parentElement.parentElement, e.target.parentElement.parentElement.dataset.id);
+      }
+    });
   }
 });
+
+// Function Create PopUp To Ask User If Really Need To Delete Task
+function confirmDeletePopUp(taskTitle) {
+  let popup = document.createElement("div");
+  popup.classList.add("popup");
+  let content = document.createElement("div");
+  content.classList.add("content");
+  let h1 = document.createElement("h1");
+  h1.appendChild(document.createTextNode(`هل انت متأكد من حذف مهمة : ${taskTitle}`));
+  content.appendChild(h1);
+  let btns = document.createElement("div");
+  btns.classList.add("btns");
+  let cancel = document.createElement("span");
+  cancel.classList.add("cancel");
+  cancel.appendChild(document.createTextNode("إلغاء"));
+  btns.appendChild(cancel);
+  let add = document.createElement("span");
+  add.classList.add("add");
+  add.appendChild(document.createTextNode("حذف"));
+  btns.appendChild(add);
+  content.appendChild(btns);
+  popup.appendChild(content);
+  document.body.appendChild(popup);
+}
+
+// Function Handle Task Delete
+function handleDelete(target, targetId) {
+  let addButton = document.querySelector(".btns .add");
+  let cancelButton = document.querySelector(".btns .cancel");
+  addButton.addEventListener("click", function () {
+    target.remove();
+    removePopUp(document.querySelector(".popup"));
+    // Remove From Local Storage
+    let lsArray = JSON.parse(window.localStorage.getItem("tasks"));
+    let resultArray = lsArray.filter((box) => box.id != targetId);
+    window.localStorage.setItem("tasks", JSON.stringify(resultArray));
+  });
+  cancelButton.addEventListener("click", function () {
+    document.getElementById("wrong").play();
+    removePopUp(document.querySelector(".popup"));
+  });
+}

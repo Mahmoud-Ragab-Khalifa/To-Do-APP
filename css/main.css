@@ -44,13 +44,17 @@ html {
 .popup .content {
   background-color: #111;
   color: #fff;
-  width: 500px;
+  width: fit-content;
   z-index: 10;
   padding: 20px;
   display: flex;
   align-items: flex-end;
   flex-direction: column;
   gap: 15px;
+}
+.popup .content h1 {
+  word-wrap: break-word;
+  max-width: 100%;
 }
 .popup .content .input {
   padding: 15px;
@@ -87,7 +91,11 @@ html {
     position: relative;
     text-align: center;
     top: 200px;
-    width: 100%;
+    max-width: 100%;
+  }
+  .popup .content h1 {
+    font-size: 20px;
+    line-height: 1.7;
   }
   .popup .content .btns {
     width: 100%;
